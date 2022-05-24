@@ -2,16 +2,17 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Stock;
+use App\Entity\Envoye;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 
-class StockCrudController extends AbstractCrudController
+class EnvoyeCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Stock::class;
+        return Envoye::class;
     }
 
 
@@ -24,8 +25,7 @@ class StockCrudController extends AbstractCrudController
             NumberField::new("marchandise"),
             NumberField::new("metal"),
             NumberField::new("diamant"),
-
-
+            AssociationField::new("user", 'Menbre'),
         ];
     }
 

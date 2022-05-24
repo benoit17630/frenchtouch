@@ -39,6 +39,17 @@ class StockRepository extends ServiceEntityRepository
         }
     }
 
+    public function findLast()
+    {
+        return $this->createQueryBuilder('s')
+
+            ->orderBy('s.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
 //    /**
 //     * @return Stock[] Returns an array of Stock objects
 //     */

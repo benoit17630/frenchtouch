@@ -17,6 +17,7 @@ class UpdatePasswordController extends AbstractController
     #[Route('/update/password', name: 'app_update_password')]
     public function index(Request $request,  UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $manager): Response
     {
+
         $user =$this->getUser();
 
        $form = $this->createForm(UpdatePwdType::class, $user);

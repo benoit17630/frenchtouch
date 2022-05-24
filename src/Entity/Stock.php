@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StockRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StockRepository::class)]
@@ -27,6 +29,18 @@ class Stock
 
     #[ORM\Column(type: 'float', nullable: true)]
     private ?float $diamant = 0;
+
+    #[ORM\OneToMany(mappedBy: 'stock', targetEntity: Don::class)]
+    private $dons;
+
+    #[ORM\OneToMany(mappedBy: 'stock', targetEntity: Envoye::class)]
+    private $envoyes;
+
+    public function __construct()
+    {
+        $this->dons = new ArrayCollection();
+        $this->envoyes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,6 +103,66 @@ class Stock
     public function setDiamant(?float $diamant): self
     {
         $this->diamant = $diamant;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Don>
+     */
+    public function getDons(): Collection
+    {
+        return $this->dons;
+    }
+
+    public function addDon(Don $don): self
+    {
+        if (!$this->dons->contains($don)) {
+            $this->dons[] = $don;
+            $don->setStock($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDon(Don $don): self
+    {
+        if ($this->dons->removeElement($don)) {
+            // set the owning side to null (unless already changed)
+            if ($don->getStock() === $this) {
+                $don->setStock(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Envoye>
+     */
+    public function getEnvoyes(): Collection
+    {
+        return $this->envoyes;
+    }
+
+    public function addEnvoye(Envoye $envoye): self
+    {
+        if (!$this->envoyes->contains($envoye)) {
+            $this->envoyes[] = $envoye;
+            $envoye->setStock($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEnvoye(Envoye $envoye): self
+    {
+        if ($this->envoyes->removeElement($envoye)) {
+            // set the owning side to null (unless already changed)
+            if ($envoye->getStock() === $this) {
+                $envoye->setStock(null);
+            }
+        }
 
         return $this;
     }

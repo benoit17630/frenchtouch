@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\DonRepository;
+use App\Repository\EnvoyeRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: DonRepository::class)]
-class Don
+#[ORM\Entity(repositoryClass: EnvoyeRepository::class)]
+class Envoye
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,20 +28,14 @@ class Don
     #[ORM\Column(type: 'float', nullable: true)]
     private $diamant = 0;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'dons')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'envoyes')]
     private $user;
 
-    #[ORM\ManyToOne(targetEntity: Stock::class, inversedBy: 'dons')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\ManyToOne(targetEntity: Stock::class, inversedBy: 'envoyes')]
     private $stock;
 
     #[ORM\Column(type: 'datetime')]
     private $createdAt;
-
-
-
-
 
     public function getId(): ?int
     {
@@ -77,9 +71,9 @@ class Don
         return $this->marchandise;
     }
 
-    public function setMarchandise(?float $marchandise): self
+    public function setMarchandise(?float $machandise): self
     {
-        $this->marchandise = $marchandise;
+        $this->machandise = $machandise;
 
         return $this;
     }
@@ -143,8 +137,4 @@ class Don
 
         return $this;
     }
-
-
-
-    
 }

@@ -1,0 +1,110 @@
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block main %}
+    <div class="container  ">
+
+        <h2 class="text-center">Stock de la banque</h2>
+
+        <table class="table mt-4">
+            <thead>
+            <tr>
+
+                <th scope="col">Cash</th>
+                <th scope="col">Munition</th>
+                <th scope="col">Marchandise</th>
+                <th scope="col">Métal</th>
+                <th scope="col">Diamant</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+
+                <td>{{ stock.cash }} M</td>
+                <td>{{ stock.munition }} M</td>
+                <td>{{ stock.marchandise }} M</td>
+                <td>{{ stock.metal }} M</td>
+                <td>{{ stock.diamant }} M</td>
+
+            </tr>
+
+            </tbody>
+        </table>
+
+        <h2 class="text-center">Vos 10 derniers don</h2>
+
+        <table class="table mt-4">
+            <thead>
+            <tr>
+
+                <th scope="col">Cash</th>
+                <th scope="col">Munition</th>
+                <th scope="col">Marchandise</th>
+                <th scope="col">Métal</th>
+                <th scope="col">Diamant</th>
+                <th scope="col">fait le </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for don in don %}
+                <tr>
+
+                    <td>{{ don.cash }} M</td>
+                    <td>{{ don.munition }} M</td>
+                    <td>{{ don.marchandise }} M</td>
+                    <td>{{ don.metal }} M</td>
+                    <td>{{ don.diamant }} M</td>
+                    {% if don.createdAt|date('U')> date('- 7 days') %}
+                        <td  class="text-danger">{{ don.createdAt|date('d/m/Y') }} </td>
+                    {% endif %}
+                    {% if don.createdAt|date('U') < date('- 7 days') %}
+                        <td  class="text-success fs-5 ">{{ don.createdAt|date('d/m/Y') }} </td>
+                    {% endif %}
+
+
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+        <h2 class="text-center">Les 10 dernier envoie de la banque</h2>
+        <table class="table mt-4">
+            <thead>
+            <tr>
+
+                <th scope="col">Cash</th>
+                <th scope="col">Munition</th>
+                <th scope="col">Marchandise</th>
+                <th scope="col">Métal</th>
+                <th scope="col">Diamant</th>
+                <th scope="col">fait le </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for don in envoie %}
+                <tr>
+
+                    <td>{{ don.cash }} M</td>
+                    <td>{{ don.munition }} M</td>
+                    <td>{{ don.marchandise }} M</td>
+                    <td>{{ don.metal }} M</td>
+                    <td>{{ don.diamant }} M</td>
+                    {% if don.createdAt|date('U')> date('- 7 days') %}
+                        <td  class="text-danger">{{ don.createdAt|date('d/m/Y') }} </td>
+                    {% endif %}
+                    {% if don.createdAt|date('U') < date('- 7 days') %}
+                        <td  class="text-success fs-5 ">{{ don.createdAt|date('d/m/Y') }} </td>
+                    {% endif %}
+
+
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+
+{% endblock %}

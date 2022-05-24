@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Don;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
@@ -29,7 +30,7 @@ class DonCrudController extends AbstractCrudController
             NumberField::new("marchandise"),
             NumberField::new("metal"),
             NumberField::new("diamant"),
-            AssociationField::new("user"),
+            AssociationField::new("user", 'Menbre'),
 
 
 
@@ -40,15 +41,17 @@ class DonCrudController extends AbstractCrudController
     public function configureActions(Actions $actions): Actions
     {
         return parent::configureActions($actions)
-            ->remove(Crud::PAGE_INDEX,"delete")
 
-            ->setPermission(Crud::PAGE_NEW, 'ROLE_R5')
-            ->setPermission(Crud::PAGE_EDIT, 'ROLE_R5')
-            ->setPermission(Crud::PAGE_DETAIL,'ROLE_R5');
+            ->setPermission(Action::DELETE , 'ROLE_BANQUE')
+            ->setPermission(Crud::PAGE_NEW, 'ROLE_BANQUE')
+            ->setPermission(Crud::PAGE_EDIT, 'ROLE_BANQUE')
+            ->setPermission(Crud::PAGE_DETAIL,'ROLE_BANQUE')
+            ->remove(Crud::PAGE_INDEX, Action::BATCH_DELETE);
 
 
 
 
     }
+
 
 }
