@@ -34,12 +34,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 class UserCrudController extends AbstractCrudController
 {
 
-    private UserRepository $userRepository;
 
-    public function __construct(UserRepository $userRepository)
-    {
-        $this->userRepository = $userRepository;
-    }
 
     public static function getEntityFqcn(): string
     {
