@@ -37,7 +37,7 @@ class DashboardController extends AbstractDashboardController
         $this->envoyeRepository = $envoyeRepository;
     }
 
-    #[Route('/', name: 'admin')]
+    #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
 
