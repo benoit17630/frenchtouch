@@ -78,12 +78,13 @@ class DashboardController extends AbstractDashboardController
                 MenuItem::linkToCrud('liste', 'fas fa-list', User::class),
                 MenuItem::linkToRoute('modifier mot de pass',"fas fa-key", "app_update_password"),
                 MenuItem::linkToRoute('ajouter un menbre', 'fa fa-plus', 'app_register')
-                    ->setPermission('ROLE_BANQUE')
+                    ->setPermission('ROLE_BANQUE'),
+
             ]);
         yield MenuItem::linkToCrud('Stock', 'fa-solid fa-business-time', Stock::class)
             ->setPermission('ROLE_BANQUE');
         yield MenuItem::linkToCrud('Don', 'fa-solid fa-gift', Don::class)
-            ->setPermission("ROLE_BANQUE");
+            ->setPermission("ROLE_R4");
         yield MenuItem::linkToCrud('envoie', 'fa-solid fa-less', Envoye::class)
             ->setPermission("ROLE_BANQUE");
 
