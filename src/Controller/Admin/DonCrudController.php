@@ -7,6 +7,7 @@ use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -48,9 +49,10 @@ class DonCrudController extends AbstractCrudController
             ->setPermission(Crud::PAGE_DETAIL,'ROLE_BANQUE')
             ->remove(Crud::PAGE_INDEX, Action::BATCH_DELETE);
 
-
-
-
+    }
+    public function configureFilters(Filters $filters): Filters
+    {
+        return parent::configureFilters($filters)->add("user");
     }
 
 
