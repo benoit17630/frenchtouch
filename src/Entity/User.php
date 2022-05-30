@@ -36,7 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $commentaire;
 
     #[ORM\Column(type: 'float')]
-    private int $taxe = 15;
+    private float $taxe = 15;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $avatar;

@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -32,6 +33,7 @@ class DonCrudController extends AbstractCrudController
             NumberField::new("metal"),
             NumberField::new("diamant"),
             AssociationField::new("user", 'Menbre'),
+            DateField::new("createdAt")->onlyOnIndex(),
 
 
 
@@ -45,8 +47,10 @@ class DonCrudController extends AbstractCrudController
 
             ->setPermission(Action::DELETE , 'ROLE_BANQUE')
             ->setPermission(Crud::PAGE_NEW, 'ROLE_BANQUE')
-            ->setPermission(Crud::PAGE_EDIT, 'ROLE_BANQUE')
+
             ->setPermission(Crud::PAGE_DETAIL,'ROLE_BANQUE')
+            ->remove(Crud::PAGE_INDEX, Action::EDIT)
+            ->remove(Crud::PAGE_DETAIL, Action::EDIT)
             ->remove(Crud::PAGE_INDEX, Action::BATCH_DELETE);
 
     }

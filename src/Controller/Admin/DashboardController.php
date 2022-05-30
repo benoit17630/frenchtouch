@@ -73,11 +73,11 @@ class DashboardController extends AbstractDashboardController
     {
 
 
-        yield MenuItem::subMenu('Menbres','fas fa-users' )
+        yield MenuItem::subMenu('Membres','fas fa-users' )
             ->setSubItems([
                 MenuItem::linkToCrud('liste', 'fas fa-list', User::class),
                 MenuItem::linkToRoute('modifier mot de pass',"fas fa-key", "app_update_password"),
-                MenuItem::linkToRoute('ajouter un menbre', 'fa fa-plus', 'app_register')
+                MenuItem::linkToRoute('ajouter un membre', 'fa fa-plus', 'app_register')
                     ->setPermission('ROLE_BANQUE'),
 
             ]);
@@ -87,6 +87,7 @@ class DashboardController extends AbstractDashboardController
             ->setPermission("ROLE_R4");
         yield MenuItem::linkToCrud('envoie', 'fa-solid fa-less', Envoye::class)
             ->setPermission("ROLE_BANQUE");
+
 
     }
     public function configureActions(): Actions
