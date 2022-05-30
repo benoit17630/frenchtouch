@@ -33,7 +33,7 @@ class DonCrudController extends AbstractCrudController
             NumberField::new("metal"),
             NumberField::new("diamant"),
             AssociationField::new("user", 'Membre'),
-            DateField::new("createdAt")->onlyOnIndex(),
+            DateField::new("createdAt" , "fait le")->onlyOnIndex(),
 
 
 
